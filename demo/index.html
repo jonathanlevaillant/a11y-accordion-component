@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Accessible Accordion Component in Vanilla JS</title>
+    <link rel="stylesheet" href="./src/main.css" media="all">
+  </head>
+  <body>
+    <article class="o-container">
+      <h2>Accordions</h2>
+      <div role="presentation" class="c-accordion u-p" data-component="accordion">
+        <div role="heading" aria-level="3">
+          <button
+            type="button"
+            id="accordion-trigger-1"
+            class="c-accordion__trigger"
+            aria-controls="accordion-panel-1"
+            aria-expanded="true">
+            Accordion Header 1
+          </button>
+        </div>
+        <div
+          id="accordion-panel-1"
+          class="c-accordion__panel"
+          role="region"
+          aria-labelledby="accordion-trigger-1">
+          <div class="c-accordion__inner">
+            <h3>Section 1</h3>
+            <p>
+              A paragraph (from the Greek paragraphos, "to write beside" or "written beside") is a self-contained unit of a
+              discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.
+              Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing,
+              used to organize longer prose.
+            </p>
+            <p><a href="#">This is a text link</a></p>
+          </div>
+        </div>
+        <div role="heading" aria-level="3">
+          <button
+            type="button"
+            id="accordion-trigger-2"
+            class="c-accordion__trigger"
+            aria-controls="accordion-panel-2">
+            Accordion Header 2
+          </button>
+        </div>
+        <div
+          id="accordion-panel-2"
+          class="c-accordion__panel"
+          role="region"
+          aria-labelledby="accordion-trigger-2">
+          <div class="c-accordion__inner">
+            <h3>Section 2</h3>
+            <p>
+              A paragraph (from the Greek paragraphos, "to write beside" or "written beside") is a self-contained unit of a
+              discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.
+              Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing,
+              used to organize longer prose.
+            </p>
+            <p><a href="#">This is a text link</a></p>
+          </div>
+        </div>
+        <div role="heading" aria-level="3">
+          <button
+            type="button"
+            id="accordion-trigger-3"
+            class="c-accordion__trigger"
+            aria-controls="accordion-panel-3">
+            Accordion Header 3
+          </button>
+        </div>
+        <div
+          id="accordion-panel-3"
+          class="c-accordion__panel"
+          role="region"
+          aria-labelledby="accordion-trigger-3">
+          <div class="c-accordion__inner">
+            <h3>Section 3</h3>
+            <p>
+              A paragraph (from the Greek paragraphos, "to write beside" or "written beside") is a self-contained unit of a
+              discourse in writing dealing with a particular point or idea. A paragraph consists of one or more sentences.
+              Though not required by the syntax of any language, paragraphs are usually an expected part of formal writing,
+              used to organize longer prose.
+            </p>
+            <p><a href="#">This is a text link</a></p>
+          </div>
+        </div>
+      </div>
+    </article>
+    <script src="./dist/main.js"></script>
+  </body>
+</html>

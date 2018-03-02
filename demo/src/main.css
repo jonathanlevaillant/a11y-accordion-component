@@ -1,0 +1,107 @@
+/* main.css
+   ========================================================================== */
+
+/* base */
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  margin-bottom: 0;
+  font-family: Georgia, serif;
+  font-size: 3.125rem;
+  line-height: 1.536;
+}
+
+h3 {
+  margin-top: 2.4rem;
+  margin-bottom: 0;
+  font-family: Bitter, Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 1.92;
+}
+
+p {
+  margin-top: 2.4rem;
+  margin-bottom: 0;
+}
+
+h2:first-child,
+h3:first-child,
+p:first-child {
+  margin-top: 0;
+}
+
+a {
+  color: #e91e63;
+}
+
+/* container */
+.o-container {
+  max-width: 105.6rem;
+  padding-right: 2.4rem;
+  padding-left: 2.4rem;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* accordions */
+.c-accordion__trigger {
+  display: block;
+  width: 100%;
+  padding: 1.2rem 2.4rem;
+  border: 0;
+  background-color: #ccc;
+  font: inherit;
+  line-height: inherit;
+  font-weight: 700;
+}
+
+.c-accordion__trigger[aria-expanded="true"] {
+  background-color: #e91e63;
+  color: #fff;
+}
+
+.c-accordion__panel[aria-hidden="true"] {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: max-height .4s, visibility .4s .4s, opacity .4s .4s;
+}
+
+.c-accordion__panel[aria-hidden="false"] {
+  max-height: 50rem;
+  visibility: visible;
+  opacity: 1;
+  transition: max-height .4s, visibility 0s, opacity 0s;
+}
+
+.c-accordion__inner {
+  padding: 2.4rem;
+  background-color: #f0f0f0;
+}
+
+/* utilities */
+.u-p {
+  margin-top: 2.4rem;
+}
