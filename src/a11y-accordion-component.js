@@ -129,7 +129,7 @@ const Accordions = (() => {
 
     components.forEach((component) => {
       options.accordion = component;
-      options.isMultiSelectable = component.dataset.multiselectable === 'true';
+      options.isMultiSelectable = component.dataset.multiselectable !== 'false';
       options.isCollapsible = component.dataset.collapsible !== 'false';
 
       const accordion = new Accordion(options);
