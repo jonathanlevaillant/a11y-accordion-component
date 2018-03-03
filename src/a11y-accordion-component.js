@@ -48,18 +48,15 @@ const Accordions = (() => {
 
     setState(event) {
       this.state.forEach((section) => {
-        if (event.target !== section.trigger) {
-          if (!this.isMultiSelectable) {
-            section.isExpanded = false;
+        if (event.target === section.trigger) {
+          if (this.isCollapsible) section.isExpanded = !section.isExpanded;
+          else {
+            section.isDisabled = true;
+            section.isExpanded = true;
           }
-          if (!this.isCollapsible) {
-            section.isDisabled = false;
-          }
-        } else if (this.isCollapsible) {
-          section.isExpanded = !section.isExpanded;
         } else {
-          section.isDisabled = true;
-          section.isExpanded = true;
+          if (!this.isMultiSelectable) section.isExpanded = false;
+          if (!this.isCollapsible) section.isDisabled = false;
         }
       });
 
