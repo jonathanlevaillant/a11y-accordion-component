@@ -36,7 +36,7 @@ sinon sur le premier bouton d'entête.
 
 #### 1. La structure HTML de l'accordéon
 
-Pour activer un accordéon, il est nécessaire de définir un composant avec l'attribut `data-component="accordion"` :
+L'attribut `data-component="accordion"` permet d'instancier un nouvel accordéon :
 
 ```
 <div role="presentation" class="c-accordion" data-component="accordion">
@@ -46,7 +46,7 @@ Pour activer un accordéon, il est nécessaire de définir un composant avec l'a
 
 Deux autres attributs facultatifs sont disponibles :
 
-- Déployer plusieurs panneaux à tout instant : `data-multiselectable="true"`
+- Déployer un seul panneau à la fois : `data-multiselectable="false"`
 - Verrouiller un panneau déployé : `data-collapsible="false"`
 
 #### 2. La structure HTML de l'entête et du panneau associé
