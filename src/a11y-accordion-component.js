@@ -16,7 +16,7 @@ const Accordions = (() => {
   class Accordion {
     constructor(options) {
       this.accordion = options.accordion;
-      this.triggers = this.queryFilter(this.accordion.querySelectorAll('[aria-controls]'));
+      this.triggers = this.queryFilter(this.accordion.querySelectorAll('[data-controls]'));
       [this.firstTrigger] = this.triggers;
       this.lastTrigger = this.triggers[this.triggers.length - 1];
 
@@ -61,10 +61,12 @@ const Accordions = (() => {
       });
 
       // update attributes
-      this.update(event);
+      this.updateAttributes(event);
     }
 
     setFocus(event) {
+      event.preventDefault();
+
       this.state.forEach((section) => {
         if (event.which === KEY_CODES.up && event.target === section.trigger) section.prevTrigger.focus();
         if (event.which === KEY_CODES.down && event.target === section.trigger) section.nextTrigger.focus();
@@ -74,13 +76,41 @@ const Accordions = (() => {
       if (event.which === KEY_CODES.end) this.lastTrigger.focus();
     }
 
-    update(event) {
+    addAttributes() {
+      this.accordion.setAttribute('role', 'presentation');
+
+      this.state.forEach((section) => {
+        section.panel.setAttribute('role', 'region');
+        section.panel.setAttribute('aria-labelledby', section.trigger.id);
+        section.trigger.setAttribute('role', 'button');
+        section.trigger.setAttribute('tabindex', 0);
+        section.trigger.setAttribute('aria-controls', section.trigger.dataset.controls);
+      });
+    }
+
+    updateAttributes(event) {
       if (event) event.preventDefault();
 
       this.state.forEach((section) => {
-        section.trigger.setAttribute('aria-disabled', section.isDisabled);
-        section.trigger.setAttribute('aria-expanded', section.isExpanded);
         section.panel.setAttribute('aria-hidden', !section.isExpanded);
+        section.trigger.setAttribute('aria-expanded', section.isExpanded);
+        section.trigger.setAttribute('aria-disabled', section.isDisabled);
+      });
+    }
+
+    removeAttributes() {
+      delete this.accordion.dataset.component;
+      this.accordion.removeAttribute('role');
+
+      this.state.forEach((section) => {
+        section.panel.removeAttribute('role');
+        section.panel.removeAttribute('aria-hidden');
+        section.panel.removeAttribute('aria-labelledby');
+        section.trigger.removeAttribute('role');
+        section.trigger.removeAttribute('tabindex');
+        section.trigger.removeAttribute('aria-controls');
+        section.trigger.removeAttribute('aria-expanded');
+        section.trigger.removeAttribute('aria-disabled');
       });
     }
 
@@ -103,25 +133,72 @@ const Accordions = (() => {
       trigger.addEventListener('keydown', this.onKeydown);
     }
 
+    removeEventListeners(trigger) {
+      trigger.removeEventListener('click', this.onClick);
+      trigger.removeEventListener('touchstart', this.onClick);
+      trigger.removeEventListener('keydown', this.onKeydown);
+    }
+
+    destroy() {
+      this.triggers.forEach((trigger) => {
+        // remove event listeners
+        this.removeEventListeners(trigger);
+      });
+
+      // remove attributes
+      this.removeAttributes();
+    }
+
     render() {
       this.triggers.forEach((trigger, index) => {
         this.state.push({
           trigger,
           prevTrigger: this.triggers[index - 1] || this.lastTrigger,
           nextTrigger: this.triggers[index + 1] || this.firstTrigger,
-          panel: document.getElementById(trigger.getAttribute('aria-controls')),
-          isExpanded: trigger.getAttribute('aria-expanded') === 'true',
-          isDisabled: !this.isCollapsible ? trigger.getAttribute('aria-expanded') === 'true' : false,
+          panel: document.getElementById(trigger.dataset.controls),
+          isExpanded: trigger.dataset.open === 'true',
+          isDisabled: !this.isCollapsible ? trigger.dataset.open === 'true' : false,
         });
-
-        // update attributes
-        this.update();
 
         // add event listeners
         this.addEventListeners(trigger);
       });
+
+      // add attributes
+      this.addAttributes();
+
+      // update attributes
+      this.updateAttributes();
     }
   }
+
+  // save all active accordions
+  const activeAccordions = [];
+
+  const render = (accordionId, { isMultiSelectable = true, isCollapsible = true } = {}) => {
+    const accordion = document.getElementById(accordionId);
+    const options = { accordion, isMultiSelectable, isCollapsible };
+
+    // add data component
+    accordion.dataset.component = 'accordion';
+
+    const activeAccordion = new Accordion(options);
+    activeAccordion.render();
+
+    // add active accordion to array
+    activeAccordions.push(activeAccordion);
+  };
+
+  const destroy = (accordionId) => {
+    activeAccordions.forEach((activeAccordion, index) => {
+      if (accordionId === activeAccordion.accordion.id) {
+        activeAccordion.destroy();
+
+        // remove accordion from array
+        activeAccordions.splice(index, 1);
+      }
+    });
+  };
 
   const init = () => {
     const components = document.querySelectorAll(DATA_COMPONENT);
@@ -137,7 +214,7 @@ const Accordions = (() => {
     });
   };
 
-  return { init };
+  return { render, destroy, init };
 })();
 
 export default Accordions;
