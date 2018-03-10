@@ -79,6 +79,7 @@ const Accordions = (() => {
     setFocus(event) {
       if (event.target.hasAttribute('data-controls')) {
         event.preventDefault();
+        event.stopPropagation();
 
         if (event.which === KEY_CODES.up || event.which === KEY_CODES.pageUp) {
           this.state[this.currentFocusedIndex].prevTrigger.focus();
@@ -89,7 +90,10 @@ const Accordions = (() => {
         if (event.which === KEY_CODES.home) this.firstTrigger.focus();
         if (event.which === KEY_CODES.end) this.lastTrigger.focus();
       } else {
-        if (event.which === KEY_CODES.pageUp || event.which === KEY_CODES.pageDown) event.preventDefault();
+        if (event.which === KEY_CODES.pageUp || event.which === KEY_CODES.pageDown) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
         if (event.which === KEY_CODES.pageUp) this.state[this.currentFocusedIndex].trigger.focus();
         if (event.which === KEY_CODES.pageDown) this.state[this.currentFocusedIndex].nextTrigger.focus();
       }
@@ -140,8 +144,8 @@ const Accordions = (() => {
     }
 
     onKeydown(event) {
-      if (event.which === KEY_CODES.enter) this.setState(event);
-      if (event.which === KEY_CODES.space) this.setState(event);
+      if (event.which === KEY_CODES.enter && event.target.hasAttribute('data-controls')) this.setState(event);
+      if (event.which === KEY_CODES.space && event.target.hasAttribute('data-controls')) this.setState(event);
       if (event.which === KEY_CODES.up) this.setFocus(event);
       if (event.which === KEY_CODES.down) this.setFocus(event);
       if (event.which === KEY_CODES.home) this.setFocus(event);
