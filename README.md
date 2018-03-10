@@ -8,7 +8,7 @@
 accordéons accessibles.
 
 Cette librairie respecte l'ensemble des critères d'accessibilité définis par 
-[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) tout en étant très légère (1.2 Ko minifiée et zippée)
+[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) tout en étant très légère (1 Ko minifiée et zippée)
 et simple à configurer.
 
 ## Fonctionnalités
@@ -23,7 +23,9 @@ sinon sur le dernier bouton d'entête.
 sinon sur le premier bouton d'entête.
 - Presser la touche `Home` sur un bouton d'entête (où que l'on soit), déplace le focus clavier sur le premier bouton d'entête.
 - Presser la touche `End` sur un bouton d'entête (où que l'on soit), déplace le focus clavier sur le dernier bouton d'entête.
-- Possibilité d'imbriquer plusieurs accordéons.
+- Presser la touche `Page Up` à l'intérieur d'un panneau , déplace le focus clavier sur le bouton d'entête associé.
+- Presser la touche `Page Down` à l'intérieur d'un panneau , déplace le focus clavier sur le bouton d'entête suivant s'il existe,
+sinon sur le premier bouton d'entête.
 
 ## Installation
 
@@ -86,7 +88,7 @@ définis par WAI-ARIA.
       Accordion Header 1
     </div>
   </h3>
-  <div id="accordion-panel-1" role="region" aria-labelledby="accordion-trigger-1" aria-hidden="true">
+  <div id="accordion-panel-1" role="region" tabindex="-1" aria-labelledby="accordion-trigger-1" aria-hidden="true">
     <div class="c-accordion__inner">
       <h3>Section 1</h3>
       <p>
