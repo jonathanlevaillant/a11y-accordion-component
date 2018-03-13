@@ -64,7 +64,7 @@ définis par WAI-ARIA.
       Accordion Header 1
     </div>
   </h3>
-  <div id="accordion-panel-1">
+  <div id="accordion-panel-1" class="c-accordion__panel">
     <div class="c-accordion__inner">
       <h4>Section 1</h4>
       <p>
