@@ -59,11 +59,11 @@ définis par WAI-ARIA.
 
 ```
 <div data-component="accordion">
-  <h3>
+  <div role="heading" aria-level="3">
     <div id="accordion-trigger-1" data-controls="accordion-panel-1">
       Accordion Header 1
     </div>
-  </h3>
+  </div>
   <div id="accordion-panel-1">
     <div class="c-accordion__inner">
       <h4>Section 1</h4>
@@ -83,11 +83,11 @@ définis par WAI-ARIA.
 
 ```
 <div role="presentation" data-component="accordion">
-  <h3>
+  <div role="heading" aria-level="3">
     <div id="accordion-trigger-1" data-controls="accordion-panel-1" role="button" tabindex="0" aria-controls="accordion-panel-1">
       Accordion Header 1
     </div>
-  </h3>
+  </div>
   <div id="accordion-panel-1" role="region" tabindex="-1" aria-labelledby="accordion-trigger-1" aria-hidden="true">
     <div class="c-accordion__inner">
       <h3>Section 1</h3>
