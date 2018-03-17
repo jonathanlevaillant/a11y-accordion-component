@@ -58,9 +58,9 @@ définis par WAI-ARIA.
 **Structure initiale :**
 
 ```
-<div data-component="accordion">
+<div class="c-accordion" data-component="accordion">
   <div role="heading" aria-level="3">
-    <div id="accordion-trigger-1" data-controls="accordion-panel-1">
+    <div id="accordion-trigger-1" class="c-accordion__trigger" data-controls="accordion-panel-1">
       Accordion Header 1
     </div>
   </div>
@@ -82,13 +82,13 @@ définis par WAI-ARIA.
 **Structure finale (après le chargement du script) :**
 
 ```
-<div role="presentation" data-component="accordion">
+<div class="c-accordion" role="presentation" data-component="accordion">
   <div role="heading" aria-level="3">
-    <div id="accordion-trigger-1" data-controls="accordion-panel-1" role="button" tabindex="0" aria-controls="accordion-panel-1">
+    <div id="accordion-trigger-1" class="c-accordion__trigger" data-controls="accordion-panel-1" role="button" tabindex="0" aria-controls="accordion-panel-1">
       Accordion Header 1
     </div>
   </div>
-  <div id="accordion-panel-1" role="region" tabindex="-1" aria-labelledby="accordion-trigger-1" aria-hidden="true">
+  <div id="accordion-panel-1" class="c-accordion__panel role="region" tabindex="-1" aria-labelledby="accordion-trigger-1" aria-hidden="true">
     <div class="c-accordion__inner">
       <h3>Section 1</h3>
       <p>
