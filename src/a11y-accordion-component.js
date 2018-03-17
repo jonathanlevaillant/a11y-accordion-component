@@ -52,7 +52,7 @@ const Accordions = (() => {
 
     setState(event) {
       this.state.forEach((section) => {
-        if (event.target === section.trigger) {
+        if (event.currentTarget === section.trigger) {
           if (this.isCollapsible) section.isExpanded = !section.isExpanded;
           else {
             section.isDisabled = true;
