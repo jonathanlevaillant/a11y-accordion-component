@@ -8,7 +8,7 @@
 accordéons accessibles.
 
 Cette librairie respecte l'ensemble des critères d'accessibilité définis par 
-[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) tout en étant très légère (1 Ko minifiée et zippée)
+[WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#accordion) tout en étant très légère (1 Ko minifiée et gzippée)
 et simple à configurer.
 
 ## Fonctionnalités
@@ -26,6 +26,7 @@ sinon sur le premier bouton d'entête.
 - Presser la touche `Page Up` à l'intérieur d'un panneau , déplace le focus clavier sur le bouton d'entête associé.
 - Presser la touche `Page Down` à l'intérieur d'un panneau , déplace le focus clavier sur le bouton d'entête suivant s'il existe,
 sinon sur le premier bouton d'entête.
+- Possibilité d'imbriquer plusieurs accordéons.
 
 ## Installation
 
@@ -136,7 +137,7 @@ Accordions.init();
 #### 5. Événements JavaScript
 
 En cas de besoin, vous pouvez déclencher le rendu d'un ou plusieurs accordéons directement en JavaScript 
-grâce à la méthode `render(accordion-ID)` :
+grâce à la méthode `render('accordion-ID')` :
 
 ```
 Accordions.render('accordion-2');
@@ -156,7 +157,7 @@ Accordions.render('accordion-2', {
 
 **Suppression d'un accordéon instancié :**
 
-Vous pouvez supprimer le rendu d'un ou plusieurs accordéons grâce à la méthode `destroy(accordion-ID)` :
+Vous pouvez supprimer le rendu d'un ou plusieurs accordéons grâce à la méthode `destroy('accordion-ID')` :
 
 ```
 Accordions.destroy('accordion-2');
@@ -175,7 +176,7 @@ Néanmoins, nous recommandons au minimum ce style nécessaire à l'ouverture et 
 }
 ```
 
-Si vous désirer des styles CSS par défaut, vous pouvez consulter le fichier `main.css` de la démo disponible 
+Si vous désirez utiliser des styles CSS par défaut, vous pouvez consulter le fichier `main.css` de la démo disponible 
 [ici](https://github.com/jonathanlevaillant/a11y-accordion-component/blob/master/demo/src/main.css)
 
 ## Contribution
