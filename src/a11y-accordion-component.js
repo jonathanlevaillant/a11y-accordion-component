@@ -157,7 +157,6 @@ const Accordions = (() => {
     addEventListeners(trigger, panel) {
       trigger.addEventListener('focus', this.onFocus);
       trigger.addEventListener('click', this.onClick);
-      trigger.addEventListener('touchstart', this.onClick);
       trigger.addEventListener('keydown', this.onKeydown);
       panel.addEventListener('keydown', this.onKeydown);
     }
@@ -165,7 +164,6 @@ const Accordions = (() => {
     removeEventListeners(trigger, panel) {
       trigger.removeEventListener('focus', this.onFocus);
       trigger.removeEventListener('click', this.onClick);
-      trigger.removeEventListener('touchstart', this.onClick);
       trigger.removeEventListener('keydown', this.onKeydown);
       panel.removeEventListener('keydown', this.onKeydown);
     }
